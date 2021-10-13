@@ -147,7 +147,7 @@
                 </p>
               </div>
             </div>
-            <div class="row align-items-center about-main-info">
+            <div class="row align-items-center about-main-info" id="theTarget">
               <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="about-m">
                   <div class="about-img">
@@ -278,7 +278,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 item">
             <div class="caption">
               <div class="star center-block" style="width: 87px;">
@@ -705,7 +705,12 @@
     </div>
   </footer>
   <div class="position-fixed" style="left:20px; bottom: 20px;">
-    <button class="btn btn-primary">asdasdasd</button>
+    <img src="/images/logo.png" alt="" class="img-circle rotate-img" id="img-circle">
+    <audio loop autoplay id="myAudio">
+      <source src="audio/pmq.mp3" type="audio/mpeg">
+    </audio>
+    </audio>
+
   </div>
   <!-- End Footer -->
 
@@ -747,6 +752,48 @@
       $('.Me').text(urlParams.get('Me'));
       $('#Guest').text(urlParams.get('Guest'));
     });
+
+    var check = true;
+    $('#img-circle').click(() => {
+      if (check) {
+        pauseAudio();
+        $('#img-circle').removeClass('rotate-img');
+      } else {
+        playAudio();
+        $('#img-circle').addClass('rotate-img');
+      }
+      check = !check;
+    });
+    var x = document.getElementById("myAudio");
+    // autoplay();
+    function autoplay() {
+      var r = confirm("Would You Like To AutoPlay Music?");
+      if (r == true) {
+        // x.play();
+        x.muted = false;
+        x.volume = 0.5;
+      }
+    }
+
+    function playAudio() {
+      x.play();
+    }
+    function pauseAudio() {
+      x.pause();
+    }
+    // $(document).on("contextmenu", function (e) {
+    //   e.preventDefault();
+    // });
+    // $(document).keydown(function (event) {
+    //   if (event.keyCode == 123) // Prevent F12
+    //   {
+    //     return false;
+    //   } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73)
+    //   // Prevent Ctrl+Shift+I
+    //   {
+    //     return false;
+    //   }
+    // });
   </script>
 </body>
 
