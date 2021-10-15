@@ -18,6 +18,7 @@
   <!-- Site Icons -->
   <!-- <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /> -->
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -782,7 +783,52 @@
       x.pause();
     }
 
-   
+    $(document).on("contextmenu", function (e) {
+      e.preventDefault();
+    });
+    $(document).keydown(function (event) {
+      if (event.keyCode == 123) // Prevent F12
+      {
+        swal({
+            title: "CẢNH BÁO!",
+            text: "Hành động này bị nghiêm cấm do vi phạm hành vi cộng đồng. Bạn muốn tiếp tục không?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Không được đâu sói ạ!!!!", {
+                icon: "success",
+              });
+            } else {
+              swal("Cảm ơn bạn vì đã tin tưởng chúng tôi!");
+            }
+          });
+        return false;
+      } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73)
+      // Prevent Ctrl+Shift+I
+      {
+        swal({
+            title: "CẢNH BÁO!",
+            text: "Hành động này bị nghiêm cấm do vi phạm hành vi cộng đồng. Bạn muốn tiếp tục không?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Không được đâu sói ạ!!!!", {
+                icon: "success",
+              });
+            } else {
+              swal("Cảm ơn bạn vì đã tin tưởng chúng tôi!");
+            }
+          });
+        return false;
+        return false;
+      }
+    });
   </script>
 </body>
 
