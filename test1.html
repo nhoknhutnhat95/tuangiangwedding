@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <script
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+
+      .container {
+        position: relative;
+        margin: 0 auto;
+        width: 60%;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+
+      h2 {
+        font-family: Pacifico;
+        font-size: 36px;
+        margin: 20px auto;
+        text-align: center;
+      }
+
+      h3 {
+        background: #fff;
+        color: #3498db;
+        font-size: 36px;
+        line-height: 100px;
+        margin: 10px;
+        padding: 2%;
+        position: relative;
+        text-align: center;
+      }
+      h3 .top {
+        font-size: 70%;
+        height: 70%;
+        margin: 0 auto;
+        background-color: rgba(255, 0, 0, 0.3);
+      }
+      h3 .bottom {
+        font-size: 70%;
+        width: 70%;
+        margin: 0 auto;
+        background-color: rgba(255, 0, 0, 0.3);
+      }
+
+      .clip {
+        height: 100px;
+        overflow: hidden;
+        bottom: 0;
+      }
+
+      .center .slick-slide {
+        background-color: rgba(255, 0, 0, 0.3);
+        height: 400px;
+      }
+
+      .center .slick-center h3 {
+        color: #e67e22;
+        opacity: 1;
+      }
+      .center .slick-center h3 .top {
+        font-size: 90%;
+        width: 90%;
+        background-color: rgba(0, 0, 255, 0.3);
+      }
+      .center .slick-center h3 .bottom {
+        font-size: 90%;
+        width: 90%;
+        background-color: rgba(0, 128, 0, 0.3);
+      }
+
+      .center h3 {
+        opacity: 0.8;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Center Mode</h2>
+      <div class="slider center">
+        <div class="clip">
+          <h3>
+            <div class="top" style="background-color: red">top</div>
+            <div>1</div>
+            <div class="bottom">btm</div>
+          </h3>
+        </div>
+        <div class="clip">
+          <h3>
+            <div class="top" style="background-color: green">top</div>
+            <div>2</div>
+            <div class="bottom">btm</div>
+          </h3>
+        </div>
+        <div class="clip">
+          <h3>
+            <div class="top" style="background-color: blue">top</div>
+            <div>3</div>
+            <div class="bottom">btm</div>
+          </h3>
+        </div>
+        <div class="clip">
+          <h3>
+            <div class="top" style="background-color: purple">top</div>
+            <div>4</div>
+            <div class="bottom">btm</div>
+          </h3>
+        </div>
+        <div class="clip">
+          <h3>
+            <div class="top" style="background-color: yellow">top</div>
+            <div>5</div>
+            <div class="bottom">btm</div>
+          </h3>
+        </div>
+        <div class="clip">
+          <h3>
+            <div class="top" style="background-color: burlywood">top</div>
+            <div>6</div>
+            <div class="bottom">btm</div>
+          </h3>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" id="test">testttttttt</button>
+  </body>
+  <script>
+    var itemCount = $(".top").length;
+    $(".center").slick({
+      // autoplay: true,
+      infinite: true,
+      autoplaySpeed: 0,
+      slidesToScroll: 1,
+      slidesToShow: 5,
+      arrows: false,
+      cssEase: "linear",
+      speed: 70,
+      initialSlide: 1,
+      draggable: false,
+      pauseOnHover: false,
+    });
+
+    // $(".center").on(
+    //   "beforeChange",
+    //   function (event, slick, currentSlide, nextSlide) {
+    //     console.log("beforeChange", currentSlide, nextSlide);
+    //   }
+    // );
+
+    // console.log($(".slick-cloned").width());
+    var distance = $(".slick-cloned").width();
+    console.log(distance);
+    var obj = $(".slick-track");
+    var transformMatrix =
+      obj.css("-webkit-transform") ||
+      obj.css("-moz-transform") ||
+      obj.css("-ms-transform") ||
+      obj.css("-o-transform") ||
+      obj.css("transform");
+    var matrix = transformMatrix.replace(/[^0-9\-.,]/g, "").split(",");
+    var firstPos = matrix[12] || matrix[4]; //translate x
+    var firstPosTemp = firstPos;
+
+    $("#test").click(() => {
+      // var distance = $(".slick-cloned").width();
+      // var time = 1;
+      // var loop = setInterval(() => {
+      //   firstPos = firstPos - distance;
+      //   if (firstPos < firstPosTemp * 2) {
+      //     firstPos = firstPosTemp;
+      //   }
+      //   time++;
+      //   console.log(time);
+      //   $(".slick-track").css(
+      //     "transform",
+      //     "translate3d(" + firstPos + "px, 0px, 0px)"
+      //   );
+      //   if (time > 50) {
+      //     clearInterval(loop);
+      //     $(".slick-track").css(
+      //       "transform",
+      //       "translate3d(" + firstPosTemp + "px, 0px, 0px)"
+      //     );
+      //     firstPos = firstPosTemp;
+      //     LoopWithTimeup();
+      //   }
+      // }, 50);
+      // function testLoop(){
+      //   var time = 1;
+      // }
+      // var element = $(".slick-track");
+      // var tween = new TWEEN.Tween({ top: 0, left: 0 })
+      //   .to({ top: 100, left: 100 }, 1000)
+      //   .onUpdate(function (object) {
+      //     element.css("transform", "translate3d(1330px, 0px, 0px)");
+      //   });
+      //   tween.start();
+      Test11();
+    });
+    var time111 = 1;
+    function Test11() {
+      $(".center").slick('slickPlay');
+
+      time111++;
+      speed += 10;
+      $(".center").on("afterChange", function (event, slick, currentSlide) {
+        $(".center").slick("slickSetOption", "speed", speed);
+      });
+      if (time111 > 70) {
+        $(".center").on("afterChange", function (event, slick, currentSlide) {
+          $(".center").slick("slickSetOption", "autoplay", false);
+        });
+        return;
+      }
+      setTimeout(() => {
+        Test11();
+      }, 300);
+    }
+    var speed = 70;
+    function LoopWithTimeup() {
+      var time1 = 1;
+      var loop1 = setInterval(() => {
+        // console.log(firstPos);
+        firstPos = firstPos - distance;
+        if (firstPos < firstPosTemp * 2) {
+          firstPos = firstPosTemp;
+        }
+        time1++;
+
+        $(".slick-track").css(
+          "transform",
+          "translate3d(" + firstPos + "px, 0px, 0px)"
+        );
+        if (time1 > 30) {
+          clearInterval(loop1);
+          $(".slick-track").css(
+            "transform",
+            "translate3d(" + firstPosTemp + "px, 0px, 0px)"
+          );
+        }
+      }, speed);
+      speed = speed + 10;
+      if (speed > 2500) {
+        return;
+      }
+      LoopWithTimeup();
+    }
+  </script>
+</html>
