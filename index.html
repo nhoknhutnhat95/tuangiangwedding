@@ -706,14 +706,24 @@
       </div>
     </div>
   </footer> -->
-  <div class="position-fixed" style="left:20px; bottom: 20px;">
-    <img src="/images/logo.png" alt="" class="img-circle rotate-img" id="img-circle">
+  <div class="position-fixed" style="left:20px; bottom: 20px;z-index: 1;">
+    <img src="/images/logo.png" alt="" class="img-circle" id="img-circle">
     <audio loop autoplay id="myAudio">
       <source src="audio/pmq.mp3" type="audio/mpeg">
     </audio>
   </div>
   <div class="position-fixed" style="left:20px; bottom: 120px;width:100px;height:100px;">
     <img src="/images/qr.png" alt="" class="" id="" style="width:100%; height:100%;">
+  </div>
+  <div class="position-fixed" style="left:20px; bottom: 120px;width:100px;height:100px;">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_c9uz3mrt.json" background="transparent" speed="1"
+      style="width: 100px; height: 100px;" loop autoplay></lottie-player>
+  </div>
+  <div class="position-fixed" style="left:89px; bottom: 3px;width:100px;height:100px;z-index: 0;">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_fiij0bc5/click.json" background="transparent"
+      speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
   </div>
   <!-- End Footer -->
 
@@ -758,7 +768,7 @@
 
     var check = true;
     $('#img-circle').click(() => {
-      if (check) {
+      if (!x.paused) {
         pauseAudio();
         $('#img-circle').removeClass('rotate-img');
       } else {
@@ -768,6 +778,12 @@
       check = !check;
     });
     var x = document.getElementById("myAudio");
+
+    $(document).ready(function () {
+      if (!x.paused) {
+        $('#img-circle').addClass('rotate-img');
+      }
+    });
     // autoplay();
     function autoplay() {
       var r = confirm("Would You Like To AutoPlay Music?");
@@ -830,6 +846,14 @@
           });
         return false;
         return false;
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.ctrlKey && e.key === 's') {
+        // Prevent the Save dialog to open
+        e.preventDefault();
+        // Place your code here
+        console.log('CTRL + S');
       }
     });
   </script>
